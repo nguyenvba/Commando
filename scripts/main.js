@@ -38,7 +38,7 @@ var Commando = {
    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
    [0,0,0,1,1,1,1,1,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-   [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+   [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
 
 
   ]
@@ -77,10 +77,12 @@ var preload = function(){
   Commando.game.load.image('speed', './images/speed.png');
   Commando.game.load.bitmapFont('desyrel', './images/desyrel.png', './images/desyrel.xml');
   Commando.game.load.image('add', './images/add.png');
+  // Commando.game.load.image('abc', './images/abc.jpg');
 }
 
 var create = function(){
-  Commando.client = new Client();
+  // var hinh = Commando.game.add.sprite(0,0,'abc');
+  // Commando.client = new Client();
   Commando.game.physics.startSystem(Phaser.Physics.ARCADE);
   Commando.keyboard = Commando.game.input.keyboard;
   Commando.game.stage.disableVisibilityChange = true;
@@ -104,8 +106,8 @@ var create = function(){
 
   // Commando.player2 = new Player(100, 300, 100, Commando.playerGroup);
   Commando.leftMonster = new Monster(115, window.innerHeight/2 - 100, 'monsterLeft', new Phaser.Point(1, 0.5), new Phaser.Point(500, 150));
-  Commando.rightMonster = new Monster(window.innerWidth-115, window.innerHeight/2 - 200, 'monsterRight', new Phaser.Point(0, 0.5), new Phaser.Point(-500, 150));
-  Commando.middleMonster= new Monster(window.innerWidth/2, 70, 'monsterMiddle', new Phaser.Point(0.4, 0.5), new Phaser.Point(0, 500));
+  Commando.rightMonster = new Monster(1500-115, window.innerHeight/2 - 200, 'monsterRight', new Phaser.Point(0, 0.5), new Phaser.Point(-500, 150));
+  Commando.middleMonster= new Monster(1500/2, 70, 'monsterMiddle', new Phaser.Point(0.4, 0.5), new Phaser.Point(0, 500));
 
   Commando.Triple = new Triple(400, 450, Commando.tripleGroup);
   Commando.Hidden = new Hidden(440, 450, Commando.hiddenGroup);
@@ -116,6 +118,7 @@ var create = function(){
   Commando.text = Commando.game.add.bitmapText(40, 20, 'desyrel', 'Phaser & Pixi\nrocking!', 20);
   Commando.textGame = Commando.game.add.bitmapText(window.innerWidth/2-150, 20, 'desyrel', 'Commando Online - 1st is the best', 20);
 
+  Commando.game.world.setBounds(0, 0, 1500, 650);
   Commando.enemies = [];
 
   // Commando.click();
@@ -127,6 +130,11 @@ var create = function(){
       }
     }
   }
+  var username = prompt("Please enter your name: ", localStorage.getItem('username') || 'Player1');
+  username = username || 'Player1';
+
+  localStorage.setItem('username', username);
+  Commando.client = new Client(username);
 }
 var update = function(){
   if(Commando.inputController){
@@ -207,8 +215,18 @@ var onHealthMeetPlayer = function(player, health){
 var onBulletHitPlayer = function(bullet, player){
   if(bullet.player != player){
     bullet.kill();
-    player.damage(bullet.bulletDamage);
-    if(!player.alive) Commando.client.playerKill(bullet.player.id);
+    // player.damage(bullet.bulletDamage);
+    if(player.id == Commando.player.sprite.id){
+      player.health -= bullet.bulletDamage;
+      Commando.client.hitDamage(player.id, player.health);
+      if(player.health==0) player.kill();
+      // Commando.player.sprite.health -= bullet.bulletDamage;
+    }
+    if(!player.alive && bullet.player.id == Commando.player.sprite.id){
+      Commando.player.sprite.score++;
+      Commando.client.playerKill(Commando.player.sprite.id);
+      Commando.click();
+    }
   }
 }
 var onBulletHitWall = function(bullet, wall){
@@ -237,11 +255,22 @@ var onNormalBulletMeetPlayer = function(normalBullet, player){
   normalBullet.kill();
   player.damage(normalBullet.bulletDamage);
 }
+Commando.onHitDamage = function(data){
+  for(var i=0; i<Commando.enemies.length; i++){
+    if(data.id == Commando.enemies[i].sprite.id){
+      Commando.enemies[i].sprite.health = data.health;
+      if(data.health==0) Commando.enemies[i].sprite.kill();
+      return;
+    }
+  }
+}
 Commando.onPlayerKill = function(id){
-  console.log('1');
-  // if(id == Commando.player.sid){
-  //   console.log('1');
-  // }
+  for(var i=0; i<Commando.enemies.length; i++){
+    if(id == Commando.enemies[i].sprite.id){
+      Commando.enemies[i].sprite.score++;
+      return;
+    }
+  }
 }
 Commando.onPlayerHidden = function(id){
   for(var i=0; i<Commando.enemies.length; i++){
@@ -278,7 +307,7 @@ Commando.onPlayFire = function(id){
 //   }
 // }
 Commando.createPlayer = function(data){
-  Commando.player = new Player(data.id, data.x, data.y, Commando.playerGroup);
+  Commando.player = new Player(data.id, data.x, data.y, Commando.playerGroup, data.username);
   Commando.game.camera.follow(Commando.player.sprite);
   Commando.inputController = new InputController(Commando.keyboard, Commando.player);
 }
@@ -289,11 +318,11 @@ Commando.onPlayerDied = function(position){
   die.play('die', 5, false, true);
 }
 Commando.onNewPlayer = function(data){
-  Commando.enemies.push(new Player(data.id, data.x, data.y, Commando.playerGroup));
+  Commando.enemies.push(new Player(data.id, data.x, data.y, Commando.playerGroup, data.username));
 }
 Commando.onAllPlayers = function(data){
   for(var i=0; i<data.length; i++){
-    Commando.enemies.push(new Player(data[i].id, data[i].x, data[i].y, Commando.playerGroup));
+    Commando.enemies.push(new Player(data[i].id, data[i].x, data[i].y, Commando.playerGroup, data[i].username));
   }
 }
 Commando.onPlayerMoved = function(data){
@@ -305,33 +334,33 @@ Commando.onPlayerMoved = function(data){
     }
   }
 }
-// Commando.click = function(){
-//   if(!Commando.addMaxHealth && Commando.player.sprite.add > 0){
-//     Commando.addMaxHealth = Commando.game.add.sprite(20, 20, 'add');
-//     Commando.addDamage = Commando.game.add.sprite(20, 45, 'add');
-//     Commando.addSpeed = Commando.game.add.sprite(20, 70, 'add');
-//     Commando.addMaxHealth.inputEnabled = true;
-//     Commando.addDamage.inputEnabled = true;
-//     Commando.addSpeed.inputEnabled = true;
-//   }
-//   if(Commando.addMaxHealth){
-//     Commando.addMaxHealth.events.onInputDown.add(function(){
-//       Commando.addMaxHealth.kill();
-//       Commando.addDamage.kill();
-//       Commando.addSpeed.kill();
-//       Commando.player.sprite.maxHealth++;
-//     }, this);
-//     Commando.addDamage.events.onInputDown.add(function(){
-//       Commando.addMaxHealth.kill();
-//       Commando.addDamage.kill();
-//       Commando.addSpeed.kill();
-//       Commando.player.sprite.playerDamage++;
-//     }, this);
-//     Commando.addSpeed.events.onInputDown.add(function(){
-//       Commando.addMaxHealth.kill();
-//       Commando.addDamage.kill();
-//       Commando.addSpeed.kill();
-//       Commando.player.sprite.speed += 30;
-//     }, this);
-//   }
-// }
+Commando.dellImageAdd = function(){
+  Commando.addMaxHealth.kill();
+  Commando.addDamage.kill();
+  Commando.addSpeed.kill();
+  Commando.player.sprite.add=true;
+}
+Commando.click = function(){
+  if(Commando.player.sprite.add){
+    Commando.addMaxHealth = Commando.game.add.sprite(20, 20, 'add');
+    Commando.addDamage = Commando.game.add.sprite(20, 45, 'add');
+    Commando.addSpeed = Commando.game.add.sprite(20, 70, 'add');
+    Commando.addMaxHealth.inputEnabled = true;
+    Commando.addDamage.inputEnabled = true;
+    Commando.addSpeed.inputEnabled = true;
+    Commando.player.sprite.add=false;
+    // Commando.game.time.events.add(Phaser.Timer.SECOND*3, function(){player.speed=200;}, this);
+  }
+    Commando.addMaxHealth.events.onInputDown.add(function(){
+      Commando.dellImageAdd();
+      Commando.player.sprite.maxHealth++;
+    }, this);
+    Commando.addDamage.events.onInputDown.add(function(){
+      Commando.dellImageAdd();
+      Commando.player.sprite.playerDamage++;
+    }, this);
+    Commando.addSpeed.events.onInputDown.add(function(){
+      Commando.dellImageAdd();
+      Commando.player.sprite.speed += 30;
+    }, this);
+}

@@ -13,13 +13,27 @@ io.on('connection', function(socket){
     x  : Math.random()*500,
     y  : Math.random()*300,
   }
-  socket.emit('createPlayer', NewPlayer);
-  socket.emit('onAllPlayers', players);
-  socket.broadcast.emit('onNewPlayer', NewPlayer);
-  players.push(NewPlayer);
+  // socket.emit('createPlayer', NewPlayer);
+  // socket.emit('onAllPlayers', players);
+  // socket.broadcast.emit('onNewPlayer', NewPlayer);
+  // players.push(NewPlayer);
   socket.on('playerMoved', function(msg){
     socket.broadcast.emit('onPlayerMoved', msg);
   });
+  socket.on('login', function(msg){
+    var NewPlayer = {
+      score: 0,
+      username : msg,
+        x : Math.random()*500,
+        y : Math.random()*300,
+      id : socket.id
+    }
+    socket.emit('onAllPlayers', players);
+    socket.emit('createPlayer', NewPlayer);
+    socket.broadcast.emit('onNewPlayer', NewPlayer);
+    players.push(NewPlayer);
+  });
+
   socket.on('PlayerDie', function(msg){
     socket.broadcast.emit('onPlayerDie', msg);
     for(var i=0; i<players.length; i++){
@@ -28,6 +42,9 @@ io.on('connection', function(socket){
         return;
       }
     }
+  });
+  socket.on('hitDamage', function(msg){
+    socket.broadcast.emit('onHitDamage', msg);
   });
   socket.on('playerHidden', function(msg){
     socket.broadcast.emit('onPlayerHidden', msg);

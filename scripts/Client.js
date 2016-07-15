@@ -1,6 +1,9 @@
 class Client{
-  constructor(){
+  constructor(username){
+    var that = this;
     this.socket = io();
+    that.socket.emit('login',username);
+
     this.socket.on('createPlayer', function(msg){
       Commando.createPlayer(msg);
     });
@@ -23,7 +26,10 @@ class Client{
       Commando.onPlayerDie(msg);
     });
     this.socket.on('onPlayerKill', function(msg){
-      Commado.onPlayerKill(msg);
+      Commando.onPlayerKill(msg);
+    });
+    this.socket.on('onHitDamage', function(msg){
+      Commando.onHitDamage(msg);
     });
   }
   playerMoved(id, direction, position){
@@ -44,5 +50,11 @@ class Client{
   }
   playerKill(id){
     this.socket.emit('playerKill', id);
+  }
+  hitDamage(id, health){
+    this.socket.emit('hitDamage', {
+      id: id,
+      health : health
+    });
   }
 }
