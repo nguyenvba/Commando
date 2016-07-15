@@ -22,13 +22,15 @@ class InputController{
         direction.y = 1;
       }
       else direction.y = 0;
-
+      this.player.update(direction);
+      Commando.client.playerMoved(this.player.sprite.id, direction, this.player.sprite.postion);
       if(this.keyboard.isDown(Phaser.KeyCode.SPACEBAR)
         && Commando.game.time.now - this.lastShotTime > 300){
           this.fire();
+          this.player.sprite.add++;
           this.lastShotTime = Commando.game.time.now;
       }
-      this.player.update(direction);
+
     }
   }
   fire(){

@@ -10,16 +10,23 @@ io.on('connection', function(socket){
   console.log('New User Connected');
   var NewPlayer = {
     id : socket.id,
-    x  : 300,
-    y  : 100
+    x  : Math.random()*500,
+    y  : Math.random()*300,
   }
+  socket.emit('createPlayer', NewPlayer);
+  socket.emit('onAllPlayers', players);
+  socket.broadcast.emit('onNewPlayer', NewPlayer);
   players.push(NewPlayer);
-  socket.emit('create', NewPlayer);
-  socket.broadcast.emit('onNewPlayer', players);
+  socket.on('playerMoved', function(msg){
+    socket.broadcast.emit('onPlayerMoved', msg);
+  });
+  socket.on('reserveBullet', function(msg){
+    socket.broadcast.emit('onReserveBullet', msg);
+  });
 })
 app.get('/', function(req, res){
   res.sendFile(__dirname + 'index.html');
 });
 http.listen(1408, function(){
-  console.log('Server started. Listening on *:6969');
+  console.log('Server started. Listening on *:1408');
 });

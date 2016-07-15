@@ -1,11 +1,12 @@
 class Player{
-  constructor(x, y){
-    this.sprite = Commando.playerGroup.create(x, y, 'run', 1);
+  constructor(id, x, y, group){
+    this.sprite = group.create(x, y, 'run', 7);
     Commando.game.physics.arcade.enable(this.sprite);
     this.sprite.anchor.set(0.5, 0.35);
     this.sprite.body.gravity.y = 500;
     this.direction = 1;
 
+    this.sprite.id = id;
     this.sprite.animations.add('runLeft', [6,5,4,3,2,1,0], 10, true);
     this.sprite.animations.add('runRight', [8,9,10,11,12,13], 10, true);
     this.sprite.animations.add('stopRunRight', [7], 10, false);
@@ -15,6 +16,12 @@ class Player{
     this.sprite.animations.add('jumpRight', [8,9,10,11,12,13], 10, true);
     this.sprite.animations.add('jumpLeft', [6,5,4,3,2,1,0], 10, true);
     this.sprite.events.onKilled.add(this.die, this);
+
+    this.checkReverse = false;
+    this.checkImmovable = false;
+
+    this.sprite.add = 1;
+    this.sprite.score = 0;
 
     this.sprite.speed = 200;
     this.sprite.health = 1;
