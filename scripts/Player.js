@@ -29,7 +29,8 @@ class Player{
     this.sprite.maxHealth = 10;
     this.sprite.body.collideWorldBounds = true;
     this.sprite.collideWall = false;
-    // this.sprite.renderable = false;
+    this.sprite.typeBullet = 1;
+    this.sprite.renderable = true;
   }
   update(direction){
     if(direction.x > 0){
@@ -48,13 +49,17 @@ class Player{
       else this.sprite.play('stopRunLeft');
     }
 
-    if(direction.y < 0 && this.sprite.collideWall && this.sprite.body.touching.down){
+    if(direction.y < 0 && this.sprite.collideWall){
       this.sprite.body.velocity.y = -400;
       this.sprite.collideWall=false;
     }
   }
   die(){
     Commando.onPlayerDied(this.sprite.position);
+    Commando.client.PlayerDie(this.sprite.id);
+  }
+  fire(){
+    new Bullet(this);
   }
   resetSpeed(){
     Commando.game.time.events.add(Phaser.Timer.SECOND*5, function(){this.speed+=100;}, this);

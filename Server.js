@@ -20,8 +20,23 @@ io.on('connection', function(socket){
   socket.on('playerMoved', function(msg){
     socket.broadcast.emit('onPlayerMoved', msg);
   });
-  socket.on('reserveBullet', function(msg){
-    socket.broadcast.emit('onReserveBullet', msg);
+  socket.on('PlayerDie', function(msg){
+    socket.broadcast.emit('onPlayerDie', msg);
+    for(var i=0; i<players.length; i++){
+      if(msg == players[i].id){
+        players.splice(i, 1)[0];
+        return;
+      }
+    }
+  });
+  socket.on('playerHidden', function(msg){
+    socket.broadcast.emit('onPlayerHidden', msg);
+  });
+  socket.on('playerKill', function(msg){
+    socket.broadcast.emit('onPlayerKill', msg);
+  });
+  socket.on('playerFire', function(msg){
+    socket.broadcast.emit('onPlayFire', msg);
   });
 })
 app.get('/', function(req, res){

@@ -13,8 +13,17 @@ class Client{
     this.socket.on('onPlayerMoved', function(msg){
       Commando.onPlayerMoved(msg);
     });
-    this.socket.on('onReserveBullet', function(msg){
-      Commando.onReserveBullet(msg);
+    this.socket.on('onPlayerHidden', function(msg){
+      Commando.onPlayerHidden(msg);
+    });
+    this.socket.on('onPlayFire', function(msg){
+      Commando.onPlayFire(msg);
+    });
+    this.socket.on('onPlayerDie', function(msg){
+      Commando.onPlayerDie(msg);
+    });
+    this.socket.on('onPlayerKill', function(msg){
+      Commado.onPlayerKill(msg);
     });
   }
   playerMoved(id, direction, position){
@@ -24,7 +33,16 @@ class Client{
       position : position
     });
   }
-  reserveBullet(id){
-    this.socket.emit('reserveBullet', id);
+  PlayerDie(id){
+    this.socket.emit('PlayerDie', id);
+  }
+  playerFire(id){
+    this.socket.emit('playerFire', id);
+  }
+  playerHidden(id){
+    this.socket.emit('playerHidden', id);
+  }
+  playerKill(id){
+    this.socket.emit('playerKill', id);
   }
 }

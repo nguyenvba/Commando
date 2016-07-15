@@ -15,6 +15,7 @@ var Commando = {
    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -23,8 +24,22 @@ var Commando = {
    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+   [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-   [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0],
+   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+   [0,0,0,1,1,1,1,1,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+   [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+
 
   ]
 };
@@ -90,7 +105,7 @@ var create = function(){
   // Commando.player2 = new Player(100, 300, 100, Commando.playerGroup);
   Commando.leftMonster = new Monster(115, window.innerHeight/2 - 100, 'monsterLeft', new Phaser.Point(1, 0.5), new Phaser.Point(500, 150));
   Commando.rightMonster = new Monster(window.innerWidth-115, window.innerHeight/2 - 200, 'monsterRight', new Phaser.Point(0, 0.5), new Phaser.Point(-500, 150));
-  Commando.middleMonster= new Monster(window.innerWidth/2, 200, 'monsterMiddle', new Phaser.Point(0.4, 0.5), new Phaser.Point(0, 500));
+  Commando.middleMonster= new Monster(window.innerWidth/2, 70, 'monsterMiddle', new Phaser.Point(0.4, 0.5), new Phaser.Point(0, 500));
 
   Commando.Triple = new Triple(400, 450, Commando.tripleGroup);
   Commando.Hidden = new Hidden(440, 450, Commando.hiddenGroup);
@@ -129,14 +144,12 @@ var update = function(){
                                         onHealthMeetPlayer, null, this);
   Commando.game.physics.arcade.overlap(Commando.playerGroup, Commando.speedGroup,
                                         onSpeedMeetPlayer, null, this);
-  // Commando.game.physics.arcade.overlap(Commando.playerGroup, Commando.hiddenGroup,
-  //                                       onHiddenMeetPlayer, null, this);
   // Commando.game.physics.arcade.overlap(Commando.playerGroup, Commando.tripleGroup,
   //                                       onTripleMeetPlayer, null, this);
-
+  // Commando.game.physics.arcade.overlap(Commando.playerGroup, Commando.hiddenGroup,
+  //                                       onHiddenMeetPlayer, null, this);
   Commando.game.physics.arcade.overlap(Commando.bulletGroup, Commando.playerGroup,
                                         onBulletHitPlayer, null, this);
-
   Commando.game.physics.arcade.overlap(Commando.bulletGroup, Commando.wallGroup,
                                         onBulletHitWall, null, this);
   Commando.game.physics.arcade.overlap(Commando.normalBulletGroup, Commando.wallGroup,
@@ -162,7 +175,7 @@ var update = function(){
 }
 
 var onPlayerOnWall = function(player, wall){
-  player.collideWall=true;
+  if(player.body.touching.down) player.collideWall=true;
 }
 
 var onSpeedMeetPlayer = function(player, speed){
@@ -173,8 +186,17 @@ var onSpeedMeetPlayer = function(player, speed){
 var onArmorMeetPlayer = function(player, armor){
   armor.kill();
   player.health++;
-
 }
+// var onHiddenMeetPlayer = function(player, hidden){
+//   hidden.kill();
+//   Commando.client.playerHidden(player.id);
+// }
+// var onTripleMeetPlayer = function(player, triple){
+//   triple.kill();
+//   player.typeBullet = 0;
+//   Commando.game.time.events.add(Phaser.Timer.SECOND*5, function(){player.typeBullet=1;}, this);
+//   //  player.fireTriple();
+// }
 var onHealthMeetPlayer = function(player, health){
   health.kill();
   if(player.health+3 <= player.maxHealth) player.health+=3;
@@ -186,6 +208,7 @@ var onBulletHitPlayer = function(bullet, player){
   if(bullet.player != player){
     bullet.kill();
     player.damage(bullet.bulletDamage);
+    if(!player.alive) Commando.client.playerKill(bullet.player.id);
   }
 }
 var onBulletHitWall = function(bullet, wall){
@@ -206,27 +229,54 @@ var onSlowBulletMeetPlayer = function(slowBullet, player){
 }
 var onReverseBulletMeetPlayer = function(reverseBullet, player){
   reverseBullet.kill();
-  if(player.id==Commando.player.sprite.id){
-    player.speed = -player.speed;
-    Commando.client.reserveBullet(player.id);
-    Commando.game.time.events.add(Phaser.Timer.SECOND*5, function(){player.speed = 200;}, this);
-  }
+  player.speed = -player.speed;
+  // Commando.client.reserveBullet(player.id);
+  Commando.game.time.events.add(Phaser.Timer.SECOND*5, function(){player.speed = 200;}, this);
 }
 var onNormalBulletMeetPlayer = function(normalBullet, player){
   normalBullet.kill();
   player.damage(normalBullet.bulletDamage);
 }
-Commando.onReserveBullet = function(id){
+Commando.onPlayerKill = function(id){
+  console.log('1');
+  // if(id == Commando.player.sid){
+  //   console.log('1');
+  // }
+}
+Commando.onPlayerHidden = function(id){
   for(var i=0; i<Commando.enemies.length; i++){
-    if(Commando.enemies[i].sprite.id == id){
-      console.log('1');
-      Commando.enemies[i].sprite.speed = -Commando.enemies[i].sprite.speed;
-      console.log(Commando.enemies[i].sprite.speed);
-      Commando.game.time.events.add(Phaser.Timer.SECOND*5, function(){Commando.enemies[i].sprite.speed = 200;}, this);
+    if(id == Commando.enemies[i].sprite.id){
+      Commando.enemies[i].sprite.renderable = false;
+      Commando.game.time.events.add(Phaser.Timer.SECOND*3, function(){
+        Commando.enemies[i].sprite.renderable = true;
+      }, this);
+    }
+  }
+}
+Commando.onPlayerDie = function(id){
+  for(var i=0; i<Commando.enemies; i++){
+    if(id == Commando.enemies[i].sprite.id){
+      Commando.enemies[i].sprite.destroy();
+    }
+  }
+}
+Commando.onPlayFire = function(id){
+  for(var i=0; i<Commando.enemies.length; i++){
+    if(id == Commando.enemies[i].sprite.id){
+      Commando.enemies[i].fire();
       return;
     }
   }
 }
+// Commando.onReserveBullet = function(id){
+//   for(var i=0; i<Commando.enemies.length; i++){
+//     if(id == Commando.enemies[i].sprite.id){
+//       Commando.enemies[i].sprite.speed = -Commando.enemies[i].sprite.speed;
+//       Commando.game.time.events.add(Phaser.Timer.SECOND*5, function(){Commando.enemies[i].sprite.speed = 200;}, this);
+//       return;
+//     }
+//   }
+// }
 Commando.createPlayer = function(data){
   Commando.player = new Player(data.id, data.x, data.y, Commando.playerGroup);
   Commando.game.camera.follow(Commando.player.sprite);
