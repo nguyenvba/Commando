@@ -37,6 +37,9 @@ class Client{
     this.socket.on('onResetMaxHealth', function(msg){
       Commando.onResetMaxHealth(msg);
     });
+    this.socket.on('playerDisconnected', function(msg){
+      Commando.onPlayerDisconnected(msg);
+    });
   }
   playerMoved(id, direction, position){
     this.socket.emit('playerMoved', {

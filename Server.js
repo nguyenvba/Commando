@@ -6,6 +6,14 @@ app.use(express.static(__dirname));
 
 var players = [];
 
+var getPlayerById = function(id, kill){
+  for(var i=0; i<players.length; i++){
+    if(players[i].id == id){
+      return kill ? players.splice(i,1)[0] : players[i];
+    }
+  }
+  return null;
+}
 io.on('connection', function(socket){
   console.log('New User Connected');
   var NewPlayer = {
@@ -13,7 +21,12 @@ io.on('connection', function(socket){
     x  : Math.random()*1500,
     y  : Math.random()*300,
   }
-
+  socket.on('disconnect', function(){
+    console.log('user disconnected');
+    if(getPlayerById(socket.id, true)){
+      socket.broadcast.emit('playerDisconnected', { id: socket.id});
+    }
+  });
   socket.on('playerMoved', function(msg){
     socket.broadcast.emit('onPlayerMoved', msg);
   });
@@ -58,6 +71,7 @@ io.on('connection', function(socket){
   socket.on('resetMaxHealth', function(msg){
     socket.broadcast.emit('onResetMaxHealth', msg);
   });
+
 })
 app.get('/', function(req, res){
   res.sendFile(__dirname + 'index.html');
