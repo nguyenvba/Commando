@@ -19,8 +19,8 @@ class Client{
     this.socket.on('onPlayerHidden', function(msg){
       Commando.onPlayerHidden(msg);
     });
-    this.socket.on('onPlayFire', function(msg){
-      Commando.onPlayFire(msg);
+    this.socket.on('onPlayerFire', function(msg){
+      Commando.onPlayerFire(msg);
     });
     this.socket.on('onPlayerDie', function(msg){
       Commando.onPlayerDie(msg);
@@ -30,6 +30,12 @@ class Client{
     });
     this.socket.on('onHitDamage', function(msg){
       Commando.onHitDamage(msg);
+    });
+    this.socket.on('onEatTripleItem', function(msg){
+      Commando.onEatTripleItem(msg);
+    });
+    this.socket.on('onResetMaxHealth', function(msg){
+      Commando.onResetMaxHealth(msg);
     });
   }
   playerMoved(id, direction, position){
@@ -55,6 +61,15 @@ class Client{
     this.socket.emit('hitDamage', {
       id: id,
       health : health
+    });
+  }
+  eatTripleItem(id){
+    this.socket.emit('eatTripleItem', id);
+  }
+  resetMaxHealth(id, maxHealth){
+    this.socket.emit('resetMaxHealth', {
+      id:id,
+      maxHealth : maxHealth
     });
   }
 }

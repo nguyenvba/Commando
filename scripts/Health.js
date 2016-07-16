@@ -8,5 +8,8 @@ class Health{
     }
     killSelf(){
       this.sprite.kill();
+      Commando.game.time.events.add(Phaser.Timer.SECOND * 5, function(){
+        new Health(Math.random()*1500, Math.random()*650, Commando.healthGroup);
+      }, this);
     }
 }

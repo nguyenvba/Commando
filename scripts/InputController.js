@@ -23,7 +23,7 @@ class InputController{
       }
       else direction.y = 0;
       this.player.update(direction);
-      Commando.client.playerMoved(this.player.sprite.id, direction, this.player.sprite.postion);
+      Commando.client.playerMoved(this.player.sprite.id, direction, this.player.sprite.position);
       if(this.keyboard.isDown(Phaser.KeyCode.SPACEBAR)
         && Commando.game.time.now - this.lastShotTime > 300){
           if(this.player.sprite.typeBullet == 1) this.fire();

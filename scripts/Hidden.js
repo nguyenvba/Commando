@@ -8,5 +8,8 @@ class Hidden{
     }
     killSelf(){
       this.sprite.kill();
+      Commando.game.time.events.add(Phaser.Timer.SECOND * 3, function(){
+        new Hidden(500, 450, Commando.hiddenGroup);
+      }, this);
     }
 }

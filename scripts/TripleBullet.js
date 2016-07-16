@@ -10,6 +10,5 @@ class TripleBullet{
     new Bullet(player, 150);
     new Bullet(player, 0);
     new Bullet(player, -150);
-
   }
 }

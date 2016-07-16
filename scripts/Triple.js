@@ -9,5 +9,8 @@ class Triple{
     }
     killSelf(){
       this.sprite.kill();
+      Commando.game.time.events.add(Phaser.Timer.SECOND * 8, function(){
+        new Triple(Math.random()*1500, Math.random()*450, Commando.tripleGroup);
+      }, this);
     }
 }

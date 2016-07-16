@@ -3,18 +3,10 @@ class Player{
     this.sprite = group.create(x, y, 'run', 7);
     this.name = name;
     this.sprite.health = 5;
-    // var text = new Phaser.Text(this.sprite.game, 0, -55, name + '\nHealth : ' + this.sprite.health,  {
-    //   font: 'bold 11pt Arial',
-    //   fill : 'white',
-    //   stroke : 'black',
-    //   strokeThickness : 3
-    // });
-    // text.anchor.set(0.5,0.5);
-    // this.sprite.addChild(text);
 
     Commando.game.physics.arcade.enable(this.sprite);
     this.sprite.anchor.set(0.5, 0.35);
-    this.sprite.body.gravity.y = 500;
+    this.sprite.body.gravity.y = 600;
     this.direction = 1;
 
     this.sprite.id = id;
@@ -44,7 +36,8 @@ class Player{
     this.sprite.renderable = true;
   }
   update(direction){
-    var text = new Phaser.Text(this.sprite.game, 0, -55, this.name + '\nHealth : ' + this.sprite.health,  {
+    var text = new Phaser.Text(this.sprite.game, 0, -65,
+      this.name + '\nHealth : ' + this.sprite.health + '\nMaxHealth : ' + this.sprite.maxHealth,  {
       font: 'bold 11pt Arial',
       fill : 'white',
       stroke : 'black',
@@ -79,6 +72,9 @@ class Player{
   }
   fire(){
     new Bullet(this);
+  }
+  fireTriple(){
+    new TripleBullet(this);
   }
   resetSpeed(){
     Commando.game.time.events.add(Phaser.Timer.SECOND*5, function(){this.speed+=100;}, this);
