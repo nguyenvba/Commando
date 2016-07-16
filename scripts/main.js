@@ -124,8 +124,10 @@ var create = function(){
 
   localStorage.setItem('username', username);
   Commando.client = new Client(username);
+  // addClick();
 }
 var update = function(){
+
   if(Commando.inputController){
     Commando.text.text = 'Max Health : ' + Math.round(Commando.player.sprite.maxHealth)
                               + '\nDamage : ' + Math.round(Commando.player.sprite.playerDamage);
@@ -196,34 +198,29 @@ var onTripleMeetPlayer = function(player, triple){
   if(player.id == Commando.player.sprite.id){
     player.typeBullet = 0;
     Commando.client.eatTripleItem(player.id);
+    Commando.game.time.events.add(Phaser.Timer.SECOND*5, function(){player.typeBullet=1;}, this);
   }
-  Commando.game.time.events.add(Phaser.Timer.SECOND*5, function(){player.typeBullet=1;}, this);
+
 }
 var onHealthMeetPlayer = function(player, health){
   health.kill();
-  if(player.health+3 <= player.maxHealth) player.health+=3;
-  else player.health=player.maxHealth;
+  if(player.id == Commando.player.sprite.id){
+    if(player.health+3 <= player.maxHealth) player.health+=3;
+    else player.health=player.maxHealth;
+    Commando.client.hitDamage(player.id, player.health);
+  }
 }
-
 
 var onBulletHitPlayer = function(bullet, player){
   if(bullet.player != player){
     bullet.kill();
     if(player.id == Commando.player.sprite.id){
       player.health -= bullet.bulletDamage;
-      Commando.client.hitDamage(player.id, player.health);
+      Commando.client.hitDamage(player.id, player.health, bullet.player.id);
       if(player.health==0){
         player.kill();
         player.destroy();
       }
-      // setTimeout(function(){
-      //   location.reload();
-      // }, 1000);
-    }
-    if(!player.alive && bullet.player.id == Commando.player.sprite.id){
-      Commando.player.sprite.score++;
-      Commando.client.playerKill(Commando.player.sprite.id);
-      // Commando.click();
     }
   }
 }
@@ -257,12 +254,26 @@ var onNormalBulletMeetPlayer = function(normalBullet, player){
       player.destroy();
     }
   }
-
 }
+// var addClick = function(){
+//     Commando.addMaxHealth = Commando.game.add.sprite(20, 20, 'add');
+//     Commando.addDamage = Commando.game.add.sprite(20, 45, 'add');
+//
+//     Commando.addMaxHealth.inputEnabled = true;
+//     Commando.addDamage.inputEnabled = true;
+//
+//     Commando.addMaxHealth.events.onInputDown.add(function(){
+//       Commando.dellImageAdd();
+//       Commando.player.sprite.maxHealth++;
+//       // Commando.client.resetMaxHealth(Commando.player.sprite.id, Commando.player.sprite.maxHealth);
+//     }, this);
+//     Commando.addDamage.events.onInputDown.add(function(){
+//       Commando.dellImageAdd();
+//       Commando.player.sprite.playerDamage++;
+//     }, this);
+// }
+
 Commando.onEatTripleItem = function(id){
-  // var player = playerById(id);
-  // player.sprite.typeBullet=0;
-  // Commando.game.time.events.add(Phaser.Timer.SECOND*5, function(){player.sprite.typeBullet = 1;}, this);
   for(var i=0; i<Commando.enemies.length; i++){
     if(id == Commando.enemies[i].sprite.id){
       Commando.enemies[i].sprite.typeBullet = 0;
@@ -278,19 +289,15 @@ Commando.onHitDamage = function(data){
       if(data.health==0){
         Commando.enemies[i].sprite.kill();
         Commando.enemies[i].sprite.destroy();
+        // if(data.bulletId == Commando.player.sprite.id) addClick();
       }
       return;
     }
   }
 }
-Commando.onPlayerKill = function(id){
-  for(var i=0; i<Commando.enemies.length; i++){
-    if(id == Commando.enemies[i].sprite.id){
-      Commando.enemies[i].sprite.score++;
-      return;
-    }
-  }
-}
+
+
+
 Commando.onPlayerHidden = function(id){
   for(var i=0; i<Commando.enemies.length; i++){
     if(id == Commando.enemies[i].sprite.id){
@@ -349,33 +356,8 @@ Commando.onPlayerMoved = function(data){
     }
   }
 }
-Commando.onResetMaxHealth = function(data){
-  for(var i=0; i<Commando.enemies.length; i++){
-    if(data.id == Commando.enemies[i].sprite.id){
-      Commando.enemies[i].sprite.maxHealth = data.maxHealth;
-      return;
-    }
-  }
-}
 Commando.dellImageAdd = function(){
   Commando.addMaxHealth.kill();
   Commando.addDamage.kill();
   Commando.player.sprite.add=true;
-}
-var click = function(){
-    Commando.addMaxHealth = Commando.game.add.sprite(20, 20, 'add');
-    Commando.addDamage = Commando.game.add.sprite(20, 45, 'add');
-
-    // Commando.addMaxHealth.inputEnabled = true;
-    // Commando.addDamage.inputEnabled = true;
-
-    // Commando.addMaxHealth.events.onInputDown.add(function(){
-    //   Commando.dellImageAdd();
-    //   Commando.player.sprite.maxHealth++;
-    //   Commando.client.resetMaxHealth(Commando.player.sprite.id, Commando.player.sprite.maxHealth);
-    // }, this);
-    // Commando.addDamage.events.onInputDown.add(function(){
-    //   Commando.dellImageAdd();
-    //   Commando.player.sprite.playerDamage++;
-    // }, this);
 }

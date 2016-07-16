@@ -60,10 +60,11 @@ class Client{
   playerKill(id){
     this.socket.emit('playerKill', id);
   }
-  hitDamage(id, health){
+  hitDamage(id, health, bulletId){
     this.socket.emit('hitDamage', {
       id: id,
-      health : health
+      health : health,
+      bulletId : bulletId
     });
   }
   eatTripleItem(id){
@@ -75,4 +76,5 @@ class Client{
       maxHealth : maxHealth
     });
   }
+
 }
