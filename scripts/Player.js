@@ -20,15 +20,15 @@ class Player{
     this.sprite.collideWall = false;
     this.sprite.typeBullet = 1;
     this.sprite.renderable = true;
-    // var text = new Phaser.Text(this.sprite.game, 0, -65,
-    //   this.name, {
-    //   font: 'bold 11pt Arial',
-    //   fill : 'white',
-    //   stroke : 'black',
-    //   strokeThickness : 3
-    // });
-    // text.anchor.set(0.5,0.5);
-    // this.sprite.addChild(text);
+    var text = new Phaser.Text(this.sprite.game, 0, -40,
+      this.name, {
+      font: 'bold 11pt Arial',
+      fill : 'white',
+      stroke : 'black',
+      strokeThickness : 3
+    });
+    text.anchor.set(0.5,0.5);
+    this.sprite.addChild(text);
   }
   update(direction){
     // var text = new Phaser.Text(this.sprite.game, 0, -65,

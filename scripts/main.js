@@ -110,12 +110,12 @@ var create = function(){
       }
     }
   }
-  // var username = prompt("Please enter your name: ", localStorage.getItem('username') || 'Player1');
-  // username = username || 'Player1';
-  //  if(username.length > 20) username = username.substring(0, 19);
-  //
-  // localStorage.setItem('username', username);
-  Commando.client = new Client('abc');
+  var username = prompt("Please enter your name: ", localStorage.getItem('username') || 'Player1');
+  username = username || 'Player1';
+   if(username.length > 20) username = username.substring(0, 19);
+
+  localStorage.setItem('username', username);
+  Commando.client = new Client(username);
   // addClick();
 }
 var update = function(){
