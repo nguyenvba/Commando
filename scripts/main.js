@@ -74,7 +74,7 @@ var preload = function(){
 
 var create = function(){
 
-  var hinh = Commando.game.add.sprite(0,0,'hinh');
+  Commando.game.add.sprite(0,0,'hinh');
   Commando.game.physics.startSystem(Phaser.Physics.ARCADE);
   Commando.keyboard = Commando.game.input.keyboard;
   Commando.game.stage.disableVisibilityChange = true;
@@ -96,9 +96,13 @@ var create = function(){
   Commando.rightMonster = new Monster(new Phaser.Point(1500-115, 100),Commando.monsterGroup, 'monsterRight', new Phaser.Point(0, 0.5));
   Commando.middleMonster= new Monster(new Phaser.Point(1500/2, 70),Commando.monsterGroup, 'monsterMiddle', new Phaser.Point(0.4, 0.5));
 
-
-  // Commando.text = Commando.game.add.bitmapText(40, 20, 'desyrel', 'Phaser & Pixi\nrocking!', 20);
   // Commando.textGame = Commando.game.add.bitmapText(window.innerWidth/2-150, 20, 'desyrel', 'Commando Online - 1st is the best', 20);
+  Commando.leaderboard = Commando.game.add.text(10, 10, '', {
+    font: 'bold 11pt Arial',
+    fill : 'white',
+    stroke : 'black',
+    strokeThickness : 3
+  });
 
   Commando.game.world.setBounds(0, 0, 1500, 650);
   Commando.enemies = [];
@@ -112,18 +116,12 @@ var create = function(){
   }
   var username = prompt("Please enter your name: ", localStorage.getItem('username') || 'Player1');
   username = username || 'Player1';
-   if(username.length > 20) username = username.substring(0, 19);
+  if(username.length > 20) username = username.substring(0, 19);
 
   localStorage.setItem('username', username);
   Commando.client = new Client(username);
-  // addClick();
 }
 var update = function(){
-
-  // if(Commando.inputController){
-  //   Commando.text.text = 'Max Health : ' + Math.round(Commando.player.sprite.maxHealth)
-  //                             + '\nDamage : ' + Math.round(Commando.player.sprite.playerDamage);
-  // }
 
   Commando.game.physics.arcade.collide(Commando.playerGroup, Commando.wallGroup,
                                         onPlayerOnWall, null, this);
@@ -139,7 +137,6 @@ var update = function(){
   Commando.game.physics.arcade.overlap(Commando.bulletGroup, Commando.monsterGroup,
                                         onBulletHitWall, null, this);
 
-
   if(Commando.inputController) Commando.inputController.update();
 }
 var getPlayerById = function(id, kill){
@@ -150,12 +147,11 @@ var getPlayerById = function(id, kill){
   }
   return null;
 }
-Commando.onPlayerDisconnected = function(msg){
-  var enemy = getPlayerById(msg.id, true);
-  if(!enemy) return;
-  enemy.sprite.destroy();
-}
 
+var setText = function(playerSprite){
+  playerSprite.text.setText('Name:' + playerSprite.name + '\nHealth:' + playerSprite.health
+    + '\nMaxHealth:' + playerSprite.maxHealth);
+}
 var onPlayerOnWall = function(player, wall){
   if(player.body.touching.down) player.collideWall=true;
 }
@@ -166,6 +162,7 @@ var onItemWithPlayer = function(playerSprite, itemSprite){
     if(itemSprite.name == 'health'){
       if(playerSprite.health+3 <= playerSprite.maxHealth) playerSprite.health += 3;
       else playerSprite.health = playerSprite.maxHealth;
+      setText(playerSprite);
     }
     if(itemSprite.name == 'speed'){
       playerSprite.speed = 300;
@@ -185,7 +182,8 @@ var onBulletHitPlayer = function(playerSprite, bulletSprite){
     bulletSprite.kill();
     if(playerSprite.id == Commando.player.sprite.id){
       playerSprite.damage(bulletSprite.bulletDamage);
-      Commando.client.hitDamage(playerSprite.id, playerSprite.health);
+      setText(playerSprite);
+      Commando.client.hitDamage(playerSprite.id, playerSprite.health, bulletSprite.player.id);
     }
   }
 }
@@ -202,6 +200,7 @@ var onMonsterBulletHitPlayer = function(playerSprite, monsterBulletSprite){
     }
     if(monsterBulletSprite.name == 'bulletNormal'){
       playerSprite.damage(1);
+      setText(playerSprite);
       Commando.client.hitDamage(playerSprite.id, playerSprite.health);
     }
 
@@ -211,34 +210,22 @@ var onBulletHitWall = function(bullet, wall){
   bullet.kill();
 }
 
-// var addClick = function(){
-//     Commando.addMaxHealth = Commando.game.add.sprite(20, 20, 'add');
-//     Commando.addDamage = Commando.game.add.sprite(20, 45, 'add');
-//
-//     Commando.addMaxHealth.inputEnabled = true;
-//     Commando.addDamage.inputEnabled = true;
-//
-//     Commando.addMaxHealth.events.onInputDown.add(function(){
-//       Commando.dellImageAdd();
-//       Commando.player.sprite.maxHealth++;
-//       // Commando.client.resetMaxHealth(Commando.player.sprite.id, Commando.player.sprite.maxHealth);
-//     }, this);
-//     Commando.addDamage.events.onInputDown.add(function(){
-//       Commando.dellImageAdd();
-//       Commando.player.sprite.playerDamage++;
-//     }, this);
-// }
-
-
+Commando.onPlayerDisconnected = function(msg){
+  var enemy = getPlayerById(msg.id, true);
+  if(!enemy) return;
+  enemy.sprite.destroy();
+}
 Commando.onHitDamage = function(data){
   if(data.health==0){
     var player = getPlayerById(data.id, true);
+    var killer = getPlayerById(data.killerId);
     player.sprite.kill();
     player.sprite.destroy();
   }
   else{
     var player = getPlayerById(data.id);
     player.sprite.health = data.health;
+    setText(player.sprite);
   }
 
 }
@@ -258,7 +245,6 @@ Commando.onPlayerFire = function(data){
   player.sprite.typeBullet=data.typeBullet;
   player.fire();
 }
-
 Commando.createPlayer = function(data){
   Commando.player = new Player(data.id, data.x, data.y, Commando.playerGroup, data.username);
   Commando.game.camera.follow(Commando.player.sprite);
@@ -284,8 +270,3 @@ Commando.onPlayerMoved = function(data){
   player.sprite.position = data.position;
   player.update(data.direction);
 }
-// Commando.dellImageAdd = function(){
-//   Commando.addMaxHealth.kill();
-//   Commando.addDamage.kill();
-//   Commando.player.sprite.add=true;
-// }

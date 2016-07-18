@@ -22,15 +22,9 @@ class Client{
     this.socket.on('onPlayerFire', function(msg){
       Commando.onPlayerFire(msg);
     });
-    // this.socket.on('onPlayerKill', function(msg){
-    //   Commando.onPlayerKill(msg);
-    // });
     this.socket.on('onHitDamage', function(msg){
       Commando.onHitDamage(msg);
     });
-    // this.socket.on('onResetMaxHealth', function(msg){
-    //   Commando.onResetMaxHealth(msg);
-    // });
     this.socket.on('playerDisconnected', function(msg){
       Commando.onPlayerDisconnected(msg);
     });
@@ -57,10 +51,11 @@ class Client{
   // playerKill(id){
   //   this.socket.emit('playerKill', id);
   // }
-  hitDamage(id, health){
+  hitDamage(id, health, killerId){
     this.socket.emit('hitDamage', {
-      id: id,
-      health : health
+      id:id,
+      health:health,
+      killerId:killerId
     });
   }
   // eatTripleItem(id){

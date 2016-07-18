@@ -1,7 +1,7 @@
 class Player{
   constructor(id, x, y, group, name){
     this.sprite = group.create(x, y, 'run', 7);
-    this.name = name;
+    this.sprite.name = name;
     this.sprite.health = 5;
     Commando.game.physics.arcade.enable(this.sprite);
     this.sprite.anchor.set(0.5, 0.35);
@@ -20,26 +20,18 @@ class Player{
     this.sprite.collideWall = false;
     this.sprite.typeBullet = 1;
     this.sprite.renderable = true;
-    var text = new Phaser.Text(this.sprite.game, 0, -40,
-      this.name, {
-      font: 'bold 11pt Arial',
+    this.sprite.text = new Phaser.Text(this.sprite.game, 0, -65,
+      'Name:' + this.sprite.name + '\nHealth:' + this.sprite.health
+        + '\nMaxHealth:' + this.sprite.maxHealth, {
+      font: 'bold 10pt Arial',
       fill : 'white',
       stroke : 'black',
       strokeThickness : 3
     });
-    text.anchor.set(0.5,0.5);
-    this.sprite.addChild(text);
+    this.sprite.text.anchor.set(0.5,0.5);
+    this.sprite.addChild(this.sprite.text);
   }
   update(direction){
-    // var text = new Phaser.Text(this.sprite.game, 0, -65,
-    //   this.name + '\nHealth : ' + this.sprite.health + '\nMaxHealth : ' + this.sprite.maxHealth,  {
-    //   font: 'bold 11pt Arial',
-    //   fill : 'white',
-    //   stroke : 'black',
-    //   strokeThickness : 3
-    // });
-    // text.anchor.set(0.5,0.5);
-    // this.sprite.addChild(this.text);
     if(direction.x > 0){
       this.sprite.play('runRight');
       this.sprite.body.velocity.x = this.sprite.speed;
