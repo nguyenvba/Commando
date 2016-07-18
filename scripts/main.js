@@ -87,10 +87,10 @@ var create = function(){
   Commando.monsterGroup = Commando.game.add.physicsGroup();
 
   Commando.itemGroup = Commando.game.add.physicsGroup();
-  new Item(100, 100, Commando.itemGroup, 'health');
-  new Item(200, 100, Commando.itemGroup, 'speed');
-  new Item(300, 100, Commando.itemGroup, 'triple');
-  new Item(400, 100, Commando.itemGroup, 'hidden');
+  new Item(Math.random()*1500, Math.random()*500, Commando.itemGroup, 'health');
+  new Item(Math.random()*1500, Math.random()*500, Commando.itemGroup, 'speed');
+  new Item(Math.random()*1500, Math.random()*500, Commando.itemGroup, 'triple');
+  new Item(Math.random()*1500, Math.random()*500, Commando.itemGroup, 'hidden');
 
   Commando.leftMonster = new Monster(new Phaser.Point(115,100), Commando.monsterGroup, 'monsterLeft', new Phaser.Point(1, 0.5));
   Commando.rightMonster = new Monster(new Phaser.Point(1500-115, 100),Commando.monsterGroup, 'monsterRight', new Phaser.Point(0, 0.5));
