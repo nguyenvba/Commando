@@ -13,10 +13,6 @@ class Bullet{
     this.sprite.body.velocity = new Phaser.Point(player.direction*500, velocityY);
     this.sprite.bulletDamage = player.sprite.playerDamage;
     this.sprite.player = player.sprite;
-    Commando.game.time.events.add(Phaser.Timer.SECOND * 6, this.killSelf, this);
-  }
-  killSelf(){
-    this.sprite.kill();
-    this.sprite.destroy();
+    this.sprite.lifespan = 4000;
   }
 }

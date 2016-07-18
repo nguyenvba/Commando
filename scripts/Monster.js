@@ -1,20 +1,15 @@
 class Monster{
-  constructor(x, y, spriteName, anchor, velocityBullet){
-    this.sprite = Commando.monsterGroup.create(x, y, spriteName);
+  constructor(position, group, spriteName, anchor){
+    this.sprite = Commando.monsterGroup.create(position.x, position.y, spriteName);
     this.sprite.anchor.set(anchor.x, anchor.y);
-    this.velocityBullet = velocityBullet;
-    this.lastShotTime = Commando.game.time.now-5000;
-    this.spriteName = spriteName;
+    if(spriteName=='monsterLeft')
+      new MonsterBullet(new Phaser.Point(this.sprite.x, this.sprite.y), Commando.monsterBulletGroup,
+      'bulletSlow', new Phaser.Point(500, 150));
+    if(spriteName=='monsterRight')
+      new MonsterBullet(new Phaser.Point(this.sprite.x, this.sprite.y), Commando.monsterBulletGroup,
+      'bulletReverse', new Phaser.Point(-500, 150));
+    if(spriteName=='monsterMiddle')
+      new MonsterBullet(new Phaser.Point(this.sprite.x, this.sprite.y), Commando.monsterBulletGroup,
+      'bulletNormal', new Phaser.Point(0, 150));
   }
-  fire(){
-    if(Commando.game.time.now - this.lastShotTime > 5000 ){
-      if(this.spriteName=='monsterLeft'){
-        new SlowBullet(this, this.velocityBullet, Commando.slowBulletGroup);
-      }
-      if(this.spriteName=='monsterRight') new ReverseBullet(this, this.velocityBullet, Commando.reverseBulletGroup);
-      if(this.spriteName=='monsterMiddle') new NormalBullet(this, this.velocityBullet, Commando.normalBulletGroup);
-      this.lastShotTime = Commando.game.time.now;
-    }
-  }
-
 }

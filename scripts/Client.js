@@ -22,21 +22,15 @@ class Client{
     this.socket.on('onPlayerFire', function(msg){
       Commando.onPlayerFire(msg);
     });
-    this.socket.on('onPlayerDie', function(msg){
-      Commando.onPlayerDie(msg);
-    });
-    this.socket.on('onPlayerKill', function(msg){
-      Commando.onPlayerKill(msg);
-    });
+    // this.socket.on('onPlayerKill', function(msg){
+    //   Commando.onPlayerKill(msg);
+    // });
     this.socket.on('onHitDamage', function(msg){
       Commando.onHitDamage(msg);
     });
-    this.socket.on('onEatTripleItem', function(msg){
-      Commando.onEatTripleItem(msg);
-    });
-    this.socket.on('onResetMaxHealth', function(msg){
-      Commando.onResetMaxHealth(msg);
-    });
+    // this.socket.on('onResetMaxHealth', function(msg){
+    //   Commando.onResetMaxHealth(msg);
+    // });
     this.socket.on('playerDisconnected', function(msg){
       Commando.onPlayerDisconnected(msg);
     });
@@ -48,33 +42,35 @@ class Client{
       position : position
     });
   }
-  PlayerDie(id){
-    this.socket.emit('PlayerDie', id);
+  playerDie(id){
+    this.socket.emit('playerDie', id);
   }
-  playerFire(id){
-    this.socket.emit('playerFire', id);
+  playerFire(id, typeBullet){
+    this.socket.emit('playerFire', {
+      id: id,
+      typeBullet:typeBullet
+    });
   }
   playerHidden(id){
     this.socket.emit('playerHidden', id);
   }
-  playerKill(id){
-    this.socket.emit('playerKill', id);
-  }
-  hitDamage(id, health, bulletId){
+  // playerKill(id){
+  //   this.socket.emit('playerKill', id);
+  // }
+  hitDamage(id, health){
     this.socket.emit('hitDamage', {
       id: id,
-      health : health,
-      bulletId : bulletId
+      health : health
     });
   }
-  eatTripleItem(id){
-    this.socket.emit('eatTripleItem', id);
-  }
-  resetMaxHealth(id, maxHealth){
-    this.socket.emit('resetMaxHealth', {
-      id:id,
-      maxHealth : maxHealth
-    });
-  }
+  // eatTripleItem(id){
+  //   this.socket.emit('eatTripleItem', id);
+  // }
+  // resetMaxHealth(id, maxHealth){
+  //   this.socket.emit('resetMaxHealth', {
+  //     id:id,
+  //     maxHealth : maxHealth
+  //   });
+  // }
 
 }

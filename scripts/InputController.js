@@ -26,17 +26,17 @@ class InputController{
       Commando.client.playerMoved(this.player.sprite.id, direction, this.player.sprite.position);
       if(this.keyboard.isDown(Phaser.KeyCode.SPACEBAR)
         && Commando.game.time.now - this.lastShotTime > 300){
-          if(this.player.sprite.typeBullet == 1) this.fire();
-          else this.fireTriple();
-          Commando.client.playerFire(this.player.sprite.id);
+          this.fire();
+          Commando.client.playerFire(this.player.sprite.id, this.player.sprite.typeBullet);
           this.lastShotTime = Commando.game.time.now;
       }
     }
   }
   fire(){
     new Bullet(this.player);
-  }
-  fireTriple(){
-    new TripleBullet(this.player);
+    if(this.player.sprite.typeBullet==0){
+      new Bullet(this.player, -150);
+      new Bullet(this.player, 150);
+    }
   }
 }

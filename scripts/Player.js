@@ -2,32 +2,18 @@ class Player{
   constructor(id, x, y, group, name){
     this.sprite = group.create(x, y, 'run', 7);
     this.name = name;
-    this.sprite.health = 5;
-
+    this.sprite.health = 2;
     Commando.game.physics.arcade.enable(this.sprite);
     this.sprite.anchor.set(0.5, 0.35);
     this.sprite.body.gravity.y = 600;
     this.direction = 1;
-
     this.sprite.id = id;
     this.sprite.animations.add('runLeft', [6,5,4,3,2,1,0], 10, true);
     this.sprite.animations.add('runRight', [8,9,10,11,12,13], 10, true);
     this.sprite.animations.add('stopRunRight', [7], 10, false);
     this.sprite.animations.add('stopRunLeft', [6], 10, false);
-    this.sprite.animations.add('sitRight', [4,5,6,7], true);
-    this.sprite.animations.add('sitLeft', [0,1,2,3], true);
-    this.sprite.animations.add('jumpRight', [8,9,10,11,12,13], 10, true);
-    this.sprite.animations.add('jumpLeft', [6,5,4,3,2,1,0], 10, true);
     this.sprite.events.onKilled.add(this.die, this);
-
-    this.checkReverse = false;
-    this.checkImmovable = false;
-
-    this.sprite.add = true;
-    this.sprite.score = 0;
-
     this.sprite.speed = 200;
-
     this.sprite.playerDamage = 1;
     this.sprite.maxHealth = 10;
     this.sprite.body.collideWorldBounds = true;
@@ -36,15 +22,15 @@ class Player{
     this.sprite.renderable = true;
   }
   update(direction){
-    var text = new Phaser.Text(this.sprite.game, 0, -65,
-      this.name + '\nHealth : ' + this.sprite.health + '\nMaxHealth : ' + this.sprite.maxHealth,  {
-      font: 'bold 11pt Arial',
-      fill : 'white',
-      stroke : 'black',
-      strokeThickness : 3
-    });
-    text.anchor.set(0.5,0.5);
-    this.sprite.addChild(text);
+    // var text = new Phaser.Text(this.sprite.game, 0, -65,
+    //   this.name + '\nHealth : ' + this.sprite.health + '\nMaxHealth : ' + this.sprite.maxHealth,  {
+    //   font: 'bold 11pt Arial',
+    //   fill : 'white',
+    //   stroke : 'black',
+    //   strokeThickness : 3
+    // });
+    // text.anchor.set(0.5,0.5);
+    // this.sprite.addChild(this.text);
     if(direction.x > 0){
       this.sprite.play('runRight');
       this.sprite.body.velocity.x = this.sprite.speed;
@@ -67,16 +53,14 @@ class Player{
     }
   }
   die(){
-    Commando.onPlayerDied(this.sprite.position);
-    Commando.client.PlayerDie(this.sprite.id);
+    Commando.onDieAnimation(this.sprite.position);
+    // Commando.client.PlayerDie(this.sprite.id);
   }
   fire(){
     new Bullet(this);
-  }
-  fireTriple(){
-    new TripleBullet(this);
-  }
-  resetSpeed(){
-    Commando.game.time.events.add(Phaser.Timer.SECOND*5, function(){this.speed+=100;}, this);
+    if(this.sprite.typeBullet==0){
+      new Bullet(this, -150);
+      new Bullet(this, 150);
+    }
   }
 }

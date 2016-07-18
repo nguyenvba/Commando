@@ -14,6 +14,7 @@ var getPlayerById = function(id, kill){
   }
   return null;
 }
+
 io.on('connection', function(socket){
   console.log('New User Connected');
   var NewPlayer = {
@@ -22,12 +23,15 @@ io.on('connection', function(socket){
     y  : Math.random()*300,
   }
   socket.on('disconnect', function(){
-    console.log('user disconnected');
+    console.log('User disconnected');
     if(getPlayerById(socket.id, true)){
       socket.broadcast.emit('playerDisconnected', { id: socket.id});
     }
   });
   socket.on('playerMoved', function(msg){
+    var player = getPlayerById(msg.id);
+    player.x = msg.position.x;
+    player.y = msg.position.y;
     socket.broadcast.emit('onPlayerMoved', msg);
   });
   socket.on('login', function(msg){
@@ -35,7 +39,7 @@ io.on('connection', function(socket){
       score: 0,
       username : msg,
         x : Math.random()*500,
-        y : Math.random()*300,
+        y : Math.random()*100,
       id : socket.id
     }
     socket.emit('onAllPlayers', players);
@@ -44,37 +48,21 @@ io.on('connection', function(socket){
     players.push(NewPlayer);
   });
 
-  socket.on('PlayerDie', function(msg){
-    socket.broadcast.emit('onPlayerDie', msg);
-    for(var i=0; i<players.length; i++){
-      if(msg == players[i].id){
-        players.splice(i, 1)[0];
-        return;
-      }
-    }
-  });
   socket.on('hitDamage', function(msg){
     socket.broadcast.emit('onHitDamage', msg);
   });
   socket.on('playerHidden', function(msg){
     socket.broadcast.emit('onPlayerHidden', msg);
   });
-  socket.on('playerKill', function(msg){
-    socket.broadcast.emit('onPlayerKill', msg);
-  });
+  // socket.on('playerKill', function(msg){
+  //   socket.broadcast.emit('onPlayerKill', msg);
+  // });
   socket.on('playerFire', function(msg){
     socket.broadcast.emit('onPlayerFire', msg);
   });
-  socket.on('eatTripleItem', function(msg){
-    socket.broadcast.emit('onEatTripleItem', msg);
-  });
-  socket.on('resetMaxHealth', function(msg){
-    socket.broadcast.emit('onResetMaxHealth', msg);
-  });
-
 })
 app.get('/', function(req, res){
-  res.sendFile(__dirname + 'index.html');
+  res.sendFile(__dirname + 'index.php');
 });
 http.listen(1408, function(){
   console.log('Server started. Listening on *:1408');
