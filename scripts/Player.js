@@ -2,7 +2,7 @@ class Player{
   constructor(id, x, y, group, name){
     this.sprite = group.create(x, y, 'run', 7);
     this.name = name;
-    this.sprite.health = 2;
+    this.sprite.health = 5;
     Commando.game.physics.arcade.enable(this.sprite);
     this.sprite.anchor.set(0.5, 0.35);
     this.sprite.body.gravity.y = 600;
@@ -20,6 +20,15 @@ class Player{
     this.sprite.collideWall = false;
     this.sprite.typeBullet = 1;
     this.sprite.renderable = true;
+    // var text = new Phaser.Text(this.sprite.game, 0, -65,
+    //   this.name, {
+    //   font: 'bold 11pt Arial',
+    //   fill : 'white',
+    //   stroke : 'black',
+    //   strokeThickness : 3
+    // });
+    // text.anchor.set(0.5,0.5);
+    // this.sprite.addChild(text);
   }
   update(direction){
     // var text = new Phaser.Text(this.sprite.game, 0, -65,
