@@ -28,6 +28,9 @@ class Client{
     this.socket.on('playerDisconnected', function(msg){
       Commando.onPlayerDisconnected(msg);
     });
+    this.socket.on('onUpdatePrototype', function(msg){
+      Commando.onUpdatePrototype(msg);
+    });
   }
   playerMoved(id, direction, position){
     this.socket.emit('playerMoved', {
@@ -48,9 +51,7 @@ class Client{
   playerHidden(id){
     this.socket.emit('playerHidden', id);
   }
-  // playerKill(id){
-  //   this.socket.emit('playerKill', id);
-  // }
+
   hitDamage(id, health, killerId){
     this.socket.emit('hitDamage', {
       id:id,
@@ -58,14 +59,12 @@ class Client{
       killerId:killerId
     });
   }
-  // eatTripleItem(id){
-  //   this.socket.emit('eatTripleItem', id);
-  // }
-  // resetMaxHealth(id, maxHealth){
-  //   this.socket.emit('resetMaxHealth', {
-  //     id:id,
-  //     maxHealth : maxHealth
-  //   });
-  // }
+  updatePrototype(id, damage, maxHealth){
+    this.socket.emit('updatePrototype', {
+      id:id,
+      damage:damage,
+      maxHealth:maxHealth
+    });
+  }
 
 }

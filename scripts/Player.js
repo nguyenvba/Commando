@@ -2,7 +2,7 @@ class Player{
   constructor(id, x, y, group, name){
     this.sprite = group.create(x, y, 'run', 7);
     this.sprite.name = name;
-    this.sprite.health = 5;
+    this.sprite.health = 7;
     Commando.game.physics.arcade.enable(this.sprite);
     this.sprite.anchor.set(0.5, 0.35);
     this.sprite.body.gravity.y = 600;
@@ -21,8 +21,8 @@ class Player{
     this.sprite.typeBullet = 1;
     this.sprite.renderable = true;
     this.sprite.text = new Phaser.Text(this.sprite.game, 0, -65,
-      'Name:' + this.sprite.name + '\nHealth:' + this.sprite.health
-        + '\nMaxHealth:' + this.sprite.maxHealth, {
+      'Name:' + this.sprite.name + '\nHealth:' + this.sprite.health + '/' + this.sprite.maxHealth
+        + '\nDamage:' + this.sprite.playerDamage, {
       font: 'bold 10pt Arial',
       fill : 'white',
       stroke : 'black',

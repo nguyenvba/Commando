@@ -6,37 +6,41 @@ var Commando = {
    [0],
    [0],
    [0],
-   [0],
+   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1],
    [0],
    [0],
    [0],
    [0],
    [0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0],
-   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1],
+   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1],
+   [0],
+   [0],
+   [0],
+   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1],
+   [0],
+   [0],
+   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1],
+   [0],
+   [0],
+   [0],
+   [0],
+   [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1],
    [0],
    [0],
    [0],
    [0],
    [0],
    [0],
-   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1],
    [0],
-   [0],
-   [0],
-   [0],
-   [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0],
-   [0],
-   [0],
-   [0],
-   [0],
-   [0],
-   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1],
+   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1],
    [0],
    [0],
    [0],
    [0],
    [0],
-   [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+   [0],
+   [0],
+   [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
   ]
 };
 
@@ -56,7 +60,7 @@ var preload = function(){
   Commando.game.load.image('playerLeft', './images/player_left.png');
   Commando.game.load.spritesheet('run', './images/run.png', 58, 75, 14);
   Commando.game.load.spritesheet('die', './images/die.png', 58, 75, 9);
-  Commando.game.load.image('wall', './images/wall_steel.png');
+  Commando.game.load.image('wall', './images/wall.png');
   Commando.game.load.image('monsterLeft', './images/monster_left.png');
   Commando.game.load.image('monsterRight', './images/monster_right.png');
   Commando.game.load.image('monsterMiddle', './images/monster_middle.png');
@@ -67,9 +71,8 @@ var preload = function(){
   Commando.game.load.image('hidden', './images/hidden.png');
   Commando.game.load.image('health', './images/health.png');
   Commando.game.load.image('speed', './images/speed.png');
-  // Commando.game.load.bitmapFont('desyrel', './images/desyrel.png', './images/desyrel.xml');
   // Commando.game.load.image('add', './images/add.png');
-  Commando.game.load.image('hinh', './images/ghost-gothic-town-wallpaper.jpg');
+  Commando.game.load.image('hinh', './images/74381.jpg');
 }
 
 var create = function(){
@@ -87,24 +90,23 @@ var create = function(){
   Commando.monsterGroup = Commando.game.add.physicsGroup();
 
   Commando.itemGroup = Commando.game.add.physicsGroup();
-  new Item(Math.random()*1500, Math.random()*500, Commando.itemGroup, 'health');
-  new Item(Math.random()*1500, Math.random()*500, Commando.itemGroup, 'speed');
-  new Item(Math.random()*1500, Math.random()*500, Commando.itemGroup, 'triple');
-  new Item(Math.random()*1500, Math.random()*500, Commando.itemGroup, 'hidden');
+  new Item(Math.random()*2000, Math.random()*500, Commando.itemGroup, 'health');
+  new Item(Math.random()*2000, Math.random()*500, Commando.itemGroup, 'speed');
+  new Item(Math.random()*2000, Math.random()*500, Commando.itemGroup, 'triple');
+  new Item(Math.random()*2000, Math.random()*500, Commando.itemGroup, 'hidden');
 
   Commando.leftMonster = new Monster(new Phaser.Point(115,100), Commando.monsterGroup, 'monsterLeft', new Phaser.Point(1, 0.5));
-  Commando.rightMonster = new Monster(new Phaser.Point(1500-115, 100),Commando.monsterGroup, 'monsterRight', new Phaser.Point(0, 0.5));
-  Commando.middleMonster= new Monster(new Phaser.Point(1500/2, 70),Commando.monsterGroup, 'monsterMiddle', new Phaser.Point(0.4, 0.5));
+  Commando.rightMonster = new Monster(new Phaser.Point(2000-115, 100),Commando.monsterGroup, 'monsterRight', new Phaser.Point(0, 0.5));
+  Commando.middleMonster= new Monster(new Phaser.Point(2000/2, 50),Commando.monsterGroup, 'monsterMiddle', new Phaser.Point(0.4, 0.5));
 
-  // Commando.textGame = Commando.game.add.bitmapText(window.innerWidth/2-150, 20, 'desyrel', 'Commando Online - 1st is the best', 20);
-  Commando.leaderboard = Commando.game.add.text(10, 10, '', {
-    font: 'bold 11pt Arial',
-    fill : 'white',
-    stroke : 'black',
-    strokeThickness : 3
-  });
-
-  Commando.game.world.setBounds(0, 0, 1500, 650);
+  // Commando.leaderboard = Commando.game.add.text(2000/2-100, 250, '', {
+  //   font: 'bold 13pt Arial',
+  //   fill : 'white',
+  //   stroke : 'black',
+  //   strokeThickness : 3
+  // });
+  // Commando.leaderboard.setText('abc');
+  Commando.game.world.setBounds(0, 0, 2000, 650);
   Commando.enemies = [];
 
   for(var i=0;i<Commando.map.length;i++){
@@ -149,8 +151,8 @@ var getPlayerById = function(id, kill){
 }
 
 var setText = function(playerSprite){
-  playerSprite.text.setText('Name:' + playerSprite.name + '\nHealth:' + playerSprite.health
-    + '\nMaxHealth:' + playerSprite.maxHealth);
+  playerSprite.text.setText('Name:' + playerSprite.name + '\nHealth:' + playerSprite.health + '/' + playerSprite.maxHealth
+    + '\nDamage:' + playerSprite.playerDamage);
 }
 var onPlayerOnWall = function(player, wall){
   if(player.body.touching.down) player.collideWall=true;
@@ -162,6 +164,7 @@ var onItemWithPlayer = function(playerSprite, itemSprite){
     if(itemSprite.name == 'health'){
       if(playerSprite.health+3 <= playerSprite.maxHealth) playerSprite.health += 3;
       else playerSprite.health = playerSprite.maxHealth;
+      Commando.client.hitDamage(playerSprite.id, playerSprite.health);
       setText(playerSprite);
     }
     if(itemSprite.name == 'speed'){
@@ -209,18 +212,41 @@ var onMonsterBulletHitPlayer = function(playerSprite, monsterBulletSprite){
 var onBulletHitWall = function(bullet, wall){
   bullet.kill();
 }
+var stronger = function(id){
+  var randomPrototype = Math.random()*2;
+  if(id == Commando.player.sprite.id){
+    if(randomPrototype <= 1){
+      if(Commando.player.sprite.playerDamage < 5)
+        Commando.player.sprite.playerDamage++;
+    }
+    else{
+      if(Commando.player.sprite.maxHealth < 30)
+      Commando.player.sprite.maxHealth+=2;
+    }
+    Commando.client.updatePrototype(id, Commando.player.sprite.playerDamage, Commando.player.sprite.maxHealth);
+    setText(Commando.player.sprite);
+  }
+}
+
 
 Commando.onPlayerDisconnected = function(msg){
   var enemy = getPlayerById(msg.id, true);
   if(!enemy) return;
   enemy.sprite.destroy();
 }
+Commando.onUpdatePrototype = function(data){
+  var player = getPlayerById(data.id);
+  if(!player) return;
+  player.sprite.playerDamage = data.damage;
+  player.sprite.maxHealth = data.maxHealth;
+  setText(player.sprite);
+}
 Commando.onHitDamage = function(data){
-  if(data.health==0){
+  if(data.health<=0){
     var player = getPlayerById(data.id, true);
-    var killer = getPlayerById(data.killerId);
     player.sprite.kill();
     player.sprite.destroy();
+    stronger(data.killerId);
   }
   else{
     var player = getPlayerById(data.id);
@@ -262,6 +288,10 @@ Commando.onNewPlayer = function(data){
 Commando.onAllPlayers = function(data){
   for(var i=0; i<data.length; i++){
     Commando.enemies.push(new Player(data[i].id, data[i].x, data[i].y, Commando.playerGroup, data[i].username));
+    Commando.enemies[i].sprite.health = data[i].health;
+    Commando.enemies[i].sprite.playerDamage = data[i].damage;
+    Commando.enemies[i].sprite.maxHealth = data[i].maxHealth;
+    setText(Commando.enemies[i].sprite);
   }
 }
 Commando.onPlayerMoved = function(data){

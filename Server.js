@@ -6,15 +6,6 @@ app.use(express.static(__dirname));
 
 var players = [];
 
-var getPlayerById = function(id, kill){
-  for(var i=0; i<players.length; i++){
-    if(players[i].id == id){
-      return kill ? players.splice(i,1)[0] : players[i];
-    }
-  }
-  return null;
-}
-
 app.get('/', function(req, res){
   res.sendFile(__dirname + 'index.html');
 });
@@ -36,7 +27,8 @@ io.on('connection', function(socket){
       username : msg,
         x : Math.random()*1500,
         y : Math.random()*500,
-      id : socket.id
+      id : socket.id,
+      damage:1, health:7, maxHealth:10, score:0
     }
     socket.emit('createPlayer', NewPlayer);
     socket.emit('onAllPlayers', players);
@@ -50,6 +42,8 @@ io.on('connection', function(socket){
     socket.broadcast.emit('onPlayerMoved', msg);
   });
   socket.on('hitDamage', function(msg){
+    var player = getPlayerById(msg.id);
+    player.health = msg.health;
     socket.broadcast.emit('onHitDamage', msg);
   });
   socket.on('playerHidden', function(msg){
@@ -57,6 +51,12 @@ io.on('connection', function(socket){
   });
   socket.on('playerFire', function(msg){
     socket.broadcast.emit('onPlayerFire', msg);
+  });
+  socket.on('updatePrototype', function(msg){
+    var player = getPlayerById(msg.id);
+    player.damage = msg.damage;
+    player.maxHealth = msg.maxHealth;
+    socket.broadcast.emit('onUpdatePrototype', msg);
   });
   socket.on('disconnect', function(){
     console.log('User disconnected');
