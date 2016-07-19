@@ -72,7 +72,7 @@ var preload = function(){
   Commando.game.load.image('health', './images/health.png');
   Commando.game.load.image('speed', './images/speed.png');
   // Commando.game.load.image('add', './images/add.png');
-  Commando.game.load.image('hinh', './images/74381.jpg');
+  Commando.game.load.image('hinh', './images/74381.JPG');
 }
 
 var create = function(){
